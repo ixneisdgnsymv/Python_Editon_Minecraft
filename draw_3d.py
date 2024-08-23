@@ -1,4 +1,5 @@
 from math import *
+import pygame
 
 
 def pos_3d(pos, cam_pos, d, rot):
@@ -12,9 +13,7 @@ def pos_3d(pos, cam_pos, d, rot):
     return y_x * d / x_z, x_y * d / x_z
 
 
-def draw_3d_line(canvas, start_pos, end_pos, cam_pos, d, rot):
-    x1 = pos_3d(start_pos, cam_pos, d, rot)[0]
-    y1 = pos_3d(start_pos, cam_pos, d, rot)[1]
-    x2 = pos_3d(end_pos, cam_pos, d, rot)[0]
-    y2 = pos_3d(end_pos, cam_pos, d, rot)[1]
-    canvas.create_line(x1, y1, x2, y2, width=1, fill='white')
+def draw_3d_line(surface, start_pos, end_pos, cam_pos, d, rot):
+    start = pos_3d(start_pos, cam_pos, d, rot)
+    end = pos_3d(end_pos, cam_pos, d, rot)
+    pygame.draw.line(surface, (255, 255, 255), start, end)
